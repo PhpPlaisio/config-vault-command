@@ -1,5 +1,5 @@
 <?php
-//----------------------------------------------------------------------------------------------------------------------
+
 namespace SetBased\Abc\ConfigVault;
 
 use SetBased\Abc\Abc;
@@ -31,9 +31,18 @@ class UnsetCommand extends Command
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $vault = Abc::$abc->getConfigVault();
+    $vault  = Abc::$abc->getConfigVault();
+    $key    = $input->getArgument('key');
+    $domain = $input->getArgument('domain');
 
-    $vault->unset($input->getArgument('domain'), $input->getArgument(('key')));
+    if ($key===null)
+    {
+      $vault->unsetDomain($domain);
+    }
+    else
+    {
+      $vault->unsetKey($domain, $key);
+    }
   }
 
   //--------------------------------------------------------------------------------------------------------------------

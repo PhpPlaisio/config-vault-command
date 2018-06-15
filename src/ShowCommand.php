@@ -1,5 +1,5 @@
 <?php
-//----------------------------------------------------------------------------------------------------------------------
+
 namespace SetBased\Abc\ConfigVault;
 
 use SetBased\Abc\Abc;
@@ -33,9 +33,19 @@ class ShowCommand extends Command
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $vault = Abc::$abc->getConfigVault();
+    $vault  = Abc::$abc->getConfigVault();
+    $key    = $input->getArgument('key');
+    $domain = $input->getArgument('domain');
 
-    $value = $vault->getValue($input->getArgument('domain'), $input->getArgument('key'));
+    if ($key===null)
+    {
+      $value = $vault->getDomain($domain);
+    }
+    else
+    {
+      $value = $vault->getString($domain, $key);
+    }
+
     if ($input->getOption('var-dump'))
     {
       var_dump($value);

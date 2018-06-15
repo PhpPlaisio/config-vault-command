@@ -10,8 +10,8 @@
   "type": "library",
   "license": "MIT",
   "require": {
-    "php": ">=7.0.0",
-    "setbased/abc": "^0.10.31",
+    "php": ">=7.1.0",
+    "setbased/abc": "^0.10.37",
     "symfony/console": "^3.0.0"
   },
   "require-dev": {

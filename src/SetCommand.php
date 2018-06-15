@@ -1,5 +1,5 @@
 <?php
-//----------------------------------------------------------------------------------------------------------------------
+
 namespace SetBased\Abc\ConfigVault;
 
 use SetBased\Abc\Abc;
@@ -24,6 +24,7 @@ class SetCommand extends Command
          ->setDescription('sets the value stored under a key in a domain.')
          ->addArgument('domain', InputArgument::REQUIRED, 'The name of the domain')
          ->addArgument('key', InputArgument::REQUIRED, 'The key')
+         ->addArgument('type', InputArgument::REQUIRED, 'The type of the value (bool, float, int, or string)')
          ->addArgument('value', InputArgument::OPTIONAL, 'The value')
          ->addOption('json', null, InputOption::VALUE_NONE, 'The value is given as a JSON encoded string');
   }
@@ -34,15 +35,42 @@ class SetCommand extends Command
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $vault = Abc::$abc->getConfigVault();
+    $vault  = Abc::$abc->getConfigVault();
+    $value  = $input->getArgument('value');
+    $type   = $input->getArgument('type');
+    $domain = $input->getArgument('domain');
+    $key    = $input->getArgument('key');
 
-    $value =$input->getArgument('value');
     if ($input->getOption('json'))
     {
-      $value = \json_decode($input->getArgument('value'), true);
+      $value = \json_decode($value, true);
     }
 
-    $vault->putValue($input->getArgument('domain'), $input->getArgument(('key')), $value);
+    switch ($type)
+    {
+      case 'bool':
+        $vault->putBool($domain, $key, $value);
+        break;
+
+      case 'float':
+        $vault->putFloat($domain, $key, $value);
+        break;
+
+      case 'int':
+        $vault->putInt($domain, $key, $value);
+        break;
+
+      case 'string':
+        $vault->putString($domain, $key, $value);
+        break;
+
+      default:
+        $output->writeln(sprintf("Unknown type '%s'", $type));
+
+        return -1;
+    }
+
+    return 0;
   }
 
   //--------------------------------------------------------------------------------------------------------------------
