@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace SetBased\Abc\ConfigVault;
 
 use SetBased\Abc\Abc;
+use SetBased\Exception\RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -37,13 +39,19 @@ class ShowCommand extends Command
     $key    = $input->getArgument('key');
     $domain = $input->getArgument('domain');
 
+    $values = $vault->getDomain($domain);
     if ($key===null)
     {
-      $value = $vault->getDomain($domain);
+      $value = $values;
     }
     else
     {
-      $value = $vault->getString($domain, $key);
+      if (!array_key_exists($key, $values))
+      {
+        throw new RuntimeException("Key '%s' does not exists in domain '%s'", $key, $domain);
+      }
+
+      $value = $values[$key];
     }
 
     if ($input->getOption('var-dump'))
