@@ -1,0 +1,7 @@
+<abc>
+    <commands>
+        <command name="config-vault:set">\SetBased\Abc\ConfigVault\SetCommand</command>
+        <command name="config-vault:show">\SetBased\Abc\ConfigVault\ShowCommand</command>
+        <command name="config-vault:unset">\SetBased\Abc\ConfigVault\UnsetCommand</command>
+    </commands>
+</abc>
