@@ -7,19 +7,18 @@
     "Vault",
     "Commands"
   ],
-  "type": "library",
   "license": "MIT",
   "require": {
     "php": ">=7.1.0",
     "ext-json": "*",
-    "setbased/abc": "*",
-    "setbased/exception": "^1.0.0",
-    "symfony/console": "^3.0.0 || ^4.0.0"
+    "setbased/abc": "^0.10.0",
+    "setbased/exception": "^2.0.0",
+    "symfony/console": "^4.0.0"
   },
   "require-dev": {
     "phing/phing": "^2.0.0",
     "phpunit/phpunit": "^7.0.0 || ^8.0.0",
-    "setbased/abc-console": "*"
+    "setbased/abc-console": "^0.1.0"
   },
   "autoload": {
     "psr-4": {
