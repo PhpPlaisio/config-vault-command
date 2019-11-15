@@ -1,33 +1,31 @@
 {
-  "name": "setbased/abc-config-vault-command",
-  "description": "ABC-Framework: Config Vault Commands",
+  "name": "plaisio/config-vault-command",
+  "description": "PhpPlaisio: Config Vault Commands",
   "keywords": [
-    "ABC-Framework",
-    "Config",
-    "Vault",
-    "Commands"
+    "PhpPlaisio",
+    "Config Vault"
   ],
   "license": "MIT",
   "require": {
     "php": ">=7.1.0",
     "ext-json": "*",
-    "setbased/abc": "^0.10.0",
+    "plaisio/kernel": "^1.0.0",
     "setbased/exception": "^2.0.0",
     "symfony/console": "^4.0.0"
   },
   "require-dev": {
     "phing/phing": "^2.0.0",
     "phpunit/phpunit": "^7.0.0 || ^8.0.0",
-    "setbased/abc-console": "^0.1.0"
+    "plaisio/console": "^0.2.0"
   },
   "autoload": {
     "psr-4": {
-      "SetBased\\Abc\\ConfigVault\\": "src/"
+      "Plaisio\\ConfigVault\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "SetBased\\Abc\\ConfigVault\\Test\\": "test/"
+      "Plaisio\\ConfigVault\\Test\\": "test/"
     }
   },
   "config": {

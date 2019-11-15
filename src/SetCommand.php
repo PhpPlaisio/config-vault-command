@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace SetBased\Abc\ConfigVault;
+namespace Plaisio\ConfigVault;
 
-use SetBased\Abc\Abc;
+use Plaisio\Kernel\Nub;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,7 +36,7 @@ class SetCommand extends Command
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $vault  = Abc::$abc->getConfigVault();
+    $vault  = Nub::$nub->getConfigVault();
     $value  = $input->getArgument('value');
     $type   = $input->getArgument('type');
     $domain = $input->getArgument('domain');

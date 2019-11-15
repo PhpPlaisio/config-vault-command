@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace SetBased\Abc\ConfigVault;
+namespace Plaisio\ConfigVault;
 
-use SetBased\Abc\Abc;
+use Plaisio\Kernel\Nub;
 use SetBased\Exception\RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -35,7 +35,7 @@ class ShowCommand extends Command
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $vault  = Abc::$abc->getConfigVault();
+    $vault  = Nub::$nub->getConfigVault();
     $key    = $input->getArgument('key');
     $domain = $input->getArgument('domain');
 
