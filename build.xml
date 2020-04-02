@@ -3,10 +3,5 @@
     <target name="update">
         <exec command="composer update" checkreturn="true" passthru="true"/>
     </target>
-
-    <!-- Runs all unit tests -->
-    <target name="unit">
-        <exec command="bin/phpunit" passthru="true" checkreturn="true"/>
-    </target>
     <target name="build"/>
 </project>
