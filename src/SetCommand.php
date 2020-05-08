@@ -36,7 +36,6 @@ class SetCommand extends Command
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $vault  = Nub::$nub->getConfigVault();
     $value  = $input->getArgument('value');
     $type   = $input->getArgument('type');
     $domain = $input->getArgument('domain');
@@ -50,19 +49,19 @@ class SetCommand extends Command
     switch ($type)
     {
       case 'bool':
-        $vault->putBool($domain, $key, $value);
+        Nub::$nub->configVault->putBool($domain, $key, $value);
         break;
 
       case 'float':
-        $vault->putFloat($domain, $key, $value);
+        Nub::$nub->configVault->putFloat($domain, $key, $value);
         break;
 
       case 'int':
-        $vault->putInt($domain, $key, $value);
+        Nub::$nub->configVault->putInt($domain, $key, $value);
         break;
 
       case 'string':
-        $vault->putString($domain, $key, $value);
+        Nub::$nub->configVault->putString($domain, $key, $value);
         break;
 
       default:

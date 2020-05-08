@@ -32,17 +32,16 @@ class UnsetCommand extends Command
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $vault  = Nub::$nub->getConfigVault();
     $key    = $input->getArgument('key');
     $domain = $input->getArgument('domain');
 
     if ($key===null)
     {
-      $vault->unsetDomain($domain);
+      Nub::$nub->configVault->unsetDomain($domain);
     }
     else
     {
-      $vault->unsetKey($domain, $key);
+      Nub::$nub->configVault->unsetKey($domain, $key);
     }
 
     return 0;

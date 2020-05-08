@@ -35,11 +35,10 @@ class ShowCommand extends Command
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $vault  = Nub::$nub->getConfigVault();
     $key    = $input->getArgument('key');
     $domain = $input->getArgument('domain');
 
-    $values = $vault->getDomain($domain);
+    $values = Nub::$nub->configVault->getDomain($domain);
     if ($key===null)
     {
       $value = $values;
