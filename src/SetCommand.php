@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Plaisio\ConfigVault;
 
 use Plaisio\Kernel\Nub;
+use SetBased\Helper\Cast;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,32 +37,32 @@ class SetCommand extends Command
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
+    $domain = Cast::toManString($input->getArgument('domain'));
+    $key    = Cast::toManString($input->getArgument('key'));
+    $type   = Cast::toManString($input->getArgument('type'));
     $value  = $input->getArgument('value');
-    $type   = $input->getArgument('type');
-    $domain = $input->getArgument('domain');
-    $key    = $input->getArgument('key');
 
     if ($input->getOption('json'))
     {
-      $value = \json_decode($value, true);
+      $value = \json_decode(Cast::toManString($value), true);
     }
 
     switch ($type)
     {
       case 'bool':
-        Nub::$nub->configVault->putBool($domain, $key, $value);
+        Nub::$nub->configVault->putBool($domain, $key, Cast::toOptBool($value));
         break;
 
       case 'float':
-        Nub::$nub->configVault->putFloat($domain, $key, $value);
+        Nub::$nub->configVault->putFloat($domain, $key, Cast::toOptFiniteFloat($value));
         break;
 
       case 'int':
-        Nub::$nub->configVault->putInt($domain, $key, $value);
+        Nub::$nub->configVault->putInt($domain, $key, Cast::toOptInt($value));
         break;
 
       case 'string':
-        Nub::$nub->configVault->putString($domain, $key, $value);
+        Nub::$nub->configVault->putString($domain, $key, Cast::toOptString($value));
         break;
 
       default:

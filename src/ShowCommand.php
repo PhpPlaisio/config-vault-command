@@ -5,6 +5,7 @@ namespace Plaisio\ConfigVault;
 
 use Plaisio\Kernel\Nub;
 use SetBased\Exception\RuntimeException;
+use SetBased\Helper\Cast;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -26,7 +27,7 @@ class ShowCommand extends Command
          ->setDescription('shows the configuration')
          ->addArgument('domain', InputArgument::REQUIRED, 'The name of the domain')
          ->addArgument('key', InputArgument::OPTIONAL, 'The key')
-         ->addOption('var-dump', null, InputOption::VALUE_NONE, 'Use var_dump for showing the value');
+         ->addOption('var-export', null, InputOption::VALUE_NONE, 'Use var_export for showing the value');
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -35,8 +36,8 @@ class ShowCommand extends Command
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $key    = $input->getArgument('key');
-    $domain = $input->getArgument('domain');
+    $key    = Cast::toOptString($input->getArgument('key'));
+    $domain = Cast::toManString($input->getArgument('domain'));
 
     $values = Nub::$nub->configVault->getDomain($domain);
     if ($key===null)
@@ -53,9 +54,9 @@ class ShowCommand extends Command
       $value = $values[$key];
     }
 
-    if ($input->getOption('var-dump'))
+    if ($input->getOption('var-export'))
     {
-      var_dump($value);
+      var_export($value);
     }
     else
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Plaisio\ConfigVault;
 
 use Plaisio\Kernel\Nub;
+use SetBased\Helper\Cast;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -32,8 +33,8 @@ class UnsetCommand extends Command
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $key    = $input->getArgument('key');
-    $domain = $input->getArgument('domain');
+    $domain = Cast::toManString($input->getArgument('domain'));
+    $key    = Cast::toOptString($input->getArgument('key'));
 
     if ($key===null)
     {
