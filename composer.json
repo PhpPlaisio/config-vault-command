@@ -9,13 +9,15 @@
   "require": {
     "php": ">=7.3",
     "ext-json": "*",
-    "plaisio/kernel": "^2.0",
+    "plaisio/config-vault": "^1.2",
+    "plaisio/kernel": "^3.1",
     "setbased/exception": "^2.1",
     "symfony/console": "^5.0"
   },
   "require-dev": {
     "phing/phing": "^2.0",
-    "phpunit/phpunit": "^9.0"
+    "phpunit/phpunit": "^9.0",
+    "plaisio/console": "^2.0"
   },
   "autoload": {
     "psr-4": {
