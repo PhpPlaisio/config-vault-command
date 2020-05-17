@@ -1,0 +1,5 @@
+<commands>
+    <command name="config-vault:set">\Plaisio\ConfigVault\SetCommand</command>
+    <command name="config-vault:show">\Plaisio\ConfigVault\ShowCommand</command>
+    <command name="config-vault:unset">\Plaisio\ConfigVault\UnsetCommand</command>
+</commands>
