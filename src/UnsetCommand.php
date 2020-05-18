@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Plaisio\ConfigVault;
 
-use Plaisio\Kernel\Nub;
+use Plaisio\Console\Command\PlaisioKernelCommand;
 use SetBased\Helper\Cast;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -15,6 +15,9 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class UnsetCommand extends Command
 {
+  //--------------------------------------------------------------------------------------------------------------------
+  use PlaisioKernelCommand;
+
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * {@inheritdoc}
@@ -38,11 +41,11 @@ class UnsetCommand extends Command
 
     if ($key===null)
     {
-      Nub::$nub->configVault->unsetDomain($domain);
+      $this->nub->configVault->unsetDomain($domain);
     }
     else
     {
-      Nub::$nub->configVault->unsetKey($domain, $key);
+      $this->nub->configVault->unsetKey($domain, $key);
     }
 
     return 0;

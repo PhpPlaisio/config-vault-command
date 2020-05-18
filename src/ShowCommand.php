@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Plaisio\ConfigVault;
 
-use Plaisio\Kernel\Nub;
+use Plaisio\Console\Command\PlaisioKernelCommand;
 use SetBased\Exception\RuntimeException;
 use SetBased\Helper\Cast;
 use Symfony\Component\Console\Command\Command;
@@ -17,6 +17,9 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class ShowCommand extends Command
 {
+  //--------------------------------------------------------------------------------------------------------------------
+  use PlaisioKernelCommand;
+
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * {@inheritdoc}
@@ -39,7 +42,7 @@ class ShowCommand extends Command
     $key    = Cast::toOptString($input->getArgument('key'));
     $domain = Cast::toManString($input->getArgument('domain'));
 
-    $values = Nub::$nub->configVault->getDomain($domain);
+    $values = $this->nub->configVault->getDomain($domain);
     if ($key===null)
     {
       $value = $values;

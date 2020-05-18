@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Plaisio\ConfigVault;
 
-use Plaisio\Kernel\Nub;
+use Plaisio\Console\Command\PlaisioKernelCommand;
 use SetBased\Helper\Cast;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,6 +16,9 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class SetCommand extends Command
 {
+  //--------------------------------------------------------------------------------------------------------------------
+  use PlaisioKernelCommand;
+
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * {@inheritdoc}
@@ -50,19 +53,19 @@ class SetCommand extends Command
     switch ($type)
     {
       case 'bool':
-        Nub::$nub->configVault->putBool($domain, $key, Cast::toOptBool($value));
+        $this->nub->configVault->putBool($domain, $key, Cast::toOptBool($value));
         break;
 
       case 'float':
-        Nub::$nub->configVault->putFloat($domain, $key, Cast::toOptFiniteFloat($value));
+        $this->nub->configVault->putFloat($domain, $key, Cast::toOptFiniteFloat($value));
         break;
 
       case 'int':
-        Nub::$nub->configVault->putInt($domain, $key, Cast::toOptInt($value));
+        $this->nub->configVault->putInt($domain, $key, Cast::toOptInt($value));
         break;
 
       case 'string':
-        Nub::$nub->configVault->putString($domain, $key, Cast::toOptString($value));
+        $this->nub->configVault->putString($domain, $key, Cast::toOptString($value));
         break;
 
       default:
