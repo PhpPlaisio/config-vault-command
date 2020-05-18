@@ -24,7 +24,7 @@ class ShowCommand extends Command
   protected function configure()
   {
     $this->setName('config-vault:show')
-         ->setDescription('shows the configuration')
+         ->setDescription('Shows the configuration')
          ->addArgument('domain', InputArgument::REQUIRED, 'The name of the domain')
          ->addArgument('key', InputArgument::OPTIONAL, 'The key')
          ->addOption('var-export', null, InputOption::VALUE_NONE, 'Use var_export for showing the value');

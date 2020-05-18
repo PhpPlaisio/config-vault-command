@@ -23,7 +23,7 @@ class SetCommand extends Command
   protected function configure()
   {
     $this->setName('config-vault:set')
-         ->setDescription('sets the value stored under a key in a domain.')
+         ->setDescription('Sets the value stored under a key in a domain.')
          ->addArgument('domain', InputArgument::REQUIRED, 'The name of the domain')
          ->addArgument('key', InputArgument::REQUIRED, 'The key')
          ->addArgument('type', InputArgument::REQUIRED, 'The type of the value (bool, float, int, or string)')
