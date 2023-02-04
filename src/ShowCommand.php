@@ -37,7 +37,7 @@ class ShowCommand extends Command
   /**
    * {@inheritdoc}
    */
-  protected function execute(InputInterface $input, OutputInterface $output)
+  protected function execute(InputInterface $input, OutputInterface $output): int
   {
     $key    = Cast::toOptString($input->getArgument('key'));
     $domain = Cast::toManString($input->getArgument('domain'));

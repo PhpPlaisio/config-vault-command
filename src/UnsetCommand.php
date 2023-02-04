@@ -34,7 +34,7 @@ class UnsetCommand extends Command
   /**
    * {@inheritdoc}
    */
-  protected function execute(InputInterface $input, OutputInterface $output)
+  protected function execute(InputInterface $input, OutputInterface $output): int
   {
     $domain = Cast::toManString($input->getArgument('domain'));
     $key    = Cast::toOptString($input->getArgument('key'));

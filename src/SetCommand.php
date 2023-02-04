@@ -38,7 +38,7 @@ class SetCommand extends Command
   /**
    * {@inheritdoc}
    */
-  protected function execute(InputInterface $input, OutputInterface $output)
+  protected function execute(InputInterface $input, OutputInterface $output): int
   {
     $domain = Cast::toManString($input->getArgument('domain'));
     $key    = Cast::toManString($input->getArgument('key'));
@@ -57,7 +57,7 @@ class SetCommand extends Command
         break;
 
       case 'float':
-        $this->nub->configVault->putFloat($domain, $key, Cast::toOptFiniteFloat($value));
+        $this->nub->configVault->putFloat($domain, $key, Cast::toOptFloat($value));
         break;
 
       case 'int':
